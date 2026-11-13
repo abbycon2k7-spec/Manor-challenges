@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mystery Manor: Grammar Challenges</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#efe6cf;--ink:#17141f;--panel:#fff8e1;--red:#d7263d;--yel:#ffd23f;--okc:#1d7a30;--badc:#b3122a;--btn:#ffd23f;--btnt:#17141f;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1d1530;--ink:#f3ead0;--panel:#2a1f45;--okc:#7fe08e;--badc:#ff8a99}}
+:root[data-theme="dark"]{--paper:#1d1530;--ink:#f3ead0;--panel:#2a1f45;--okc:#7fe08e;--badc:#ff8a99}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background-color:var(--paper);background-image:radial-gradient(color-mix(in srgb,var(--ink) 15%,transparent) 1.3px,transparent 1.6px);background-size:10px 10px;color:var(--ink);font:1.2rem/1.5 "Patrick Hand","Comic Sans MS",cursive}
+main{max-width:880px;margin:0 auto;padding:1rem 1rem 3rem}
+h1,h2,.tab,button.go,.chip{font-family:Bangers,Impact,"Arial Narrow",sans-serif;font-weight:400;letter-spacing:.04em}
+h1{margin:.6rem 0 .2rem;font-size:clamp(2.8rem,10vw,5.2rem);line-height:1;color:var(--yel);-webkit-text-stroke:3px #17141f;paint-order:stroke fill;text-shadow:5px 5px 0 var(--red);transform:rotate(-2deg);text-align:center}
+.cap{display:block;width:fit-content;max-width:100%;margin:.4rem auto 1rem;padding:.3rem .9rem;background:var(--yel);color:#17141f;border:3px solid #17141f;border-radius:6px 18px 8px 20px/20px 8px 18px 6px;box-shadow:4px 4px 0 var(--ink);transform:rotate(1deg);text-align:center}
+.box{border:4px solid var(--ink);border-radius:6px 18px 8px 20px/20px 8px 18px 6px;box-shadow:7px 7px 0 var(--ink)}
+.scene{background:#2b1d4a;overflow:hidden;margin-bottom:1.4rem}
+svg{display:block;width:100%;height:auto}
+.win{cursor:pointer;outline:none}
+.win .pane{fill:#120d1c;stroke:#0e0b14;stroke-width:4}
+.win text{fill:#ffd23f;font:34px Bangers,Impact,sans-serif;text-anchor:middle;pointer-events:none}
+.win.lit .pane{fill:#ffd23f}.win.lit text{fill:#17141f}
+.win.cur .pane,.win:focus-visible .pane{stroke:#d7263d;stroke-width:7}
+@media (prefers-reduced-motion:no-preference){.win:not(.lit) .pane{animation:fl 5s infinite}.win:nth-child(2n) .pane{animation-delay:-2s}.win:nth-child(3n) .pane{animation-delay:-3.5s}}
+@keyframes fl{0%,90%,100%{opacity:1}93%{opacity:.35}96%{opacity:.8}}
+.bar{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-bottom:1rem}
+.prog{margin-left:auto;font-size:1.1rem}
+.tab{font-size:1.15rem;padding:.35rem .8rem;background:var(--panel);color:var(--ink);border:3px solid var(--ink);border-radius:6px 14px 8px 16px/16px 8px 14px 6px;cursor:pointer}
+.tab[aria-current=true]{background:var(--red);color:#fff}
+.tab.done{background:#8ed26b;color:#17141f}
+.tab.done[aria-current=true]{background:#8ed26b;box-shadow:0 0 0 4px var(--red)}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:4px solid var(--red);outline-offset:2px}
+.panel{background:var(--panel);padding:1.2rem 1.2rem 1.5rem}
+.panel[hidden]{display:none}
+.say{position:relative;display:inline-block;margin:0 0 1.1rem;padding:.4rem .9rem;background:#fff;color:#17141f;border:3px solid #17141f;border-radius:50% 46% 48% 52%/60% 55% 50% 50%;max-width:100%}
+.say::after{content:"";position:absolute;left:1.6rem;bottom:-14px;border:9px solid transparent;border-top:14px solid #17141f;border-bottom:0}
+h2{margin:0;font-size:2.1rem;line-height:1.1}
+.chip{display:inline-block;margin:.3rem 0 .6rem;padding:.05rem .7rem;background:#17141f;color:var(--yel);border-radius:4px;transform:rotate(-1deg)}
+ol{padding-left:1.4rem}li{margin:1rem 0;padding-left:.2rem}
+li.ok{border-left:6px solid var(--okc);padding-left:.6rem}li.bad{border-left:6px solid var(--badc);padding-left:.6rem}
+.fb{display:block;font-style:normal;font-size:1.05rem}li.ok .fb{color:var(--okc)}li.bad .fb{color:var(--badc)}
+input[type=text],select,textarea{font:inherit;color:#17141f;background:#fffdf4;border:3px solid #17141f;border-radius:4px 10px 5px 12px/12px 5px 10px 4px;padding:.2rem .5rem;max-width:100%}
+input[type=text]{width:min(100%,20rem);margin:.2rem 0}textarea{width:100%;min-height:4.5rem}
+.yn{display:inline-flex;gap:.4rem;margin-left:.4rem}
+.yn button,button.go{font-size:1.2rem;padding:.15rem .9rem;background:var(--btn);color:var(--btnt);border:3px solid #17141f;border-radius:5px 12px 6px 14px/14px 6px 12px 5px;box-shadow:3px 3px 0 #17141f;cursor:pointer}
+.yn button[aria-pressed=true]{background:var(--red);color:#fff}
+button.go:active,.yn button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #17141f}
+.row{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;margin-top:1rem}
+.res{font-size:1.15rem}
+.bonus{margin-top:1.4rem;padding-top:.8rem;border-top:3px dashed var(--ink)}
+.win-banner{margin:0 0 1rem;font-size:1.4rem;text-align:center}
+@media (max-width:520px){.prog{margin-left:0;width:100%}}
+</style>
+</head>
+<body>
+<main>
+<h1>Mystery Manor</h1>
+<span class="cap">Grammar challenges: light all six rooms to crack the case!</span>
+
+<div class="box scene">
+<svg viewBox="0 0 800 440" role="group" aria-label="A spooky mansion with six rooms. Each lit window is a practice activity.">
+<defs>
+<filter id="rough"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="5"/></filter>
+<pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#0e0b14" stroke-opacity=".4" stroke-width="2"/></pattern>
+</defs>
+<rect width="800" height="440" fill="#2b1d4a"/>
+<g filter="url(#rough)" stroke="#0e0b14" stroke-width="4" stroke-linejoin="round">
+<circle cx="725" cy="62" r="36" fill="#f3ead0"/><circle cx="712" cy="52" r="7" fill="#d9cfae" stroke-width="2"/><circle cx="738" cy="74" r="5" fill="#d9cfae" stroke-width="2"/>
+<path d="M60 90q14-20 28 0q14-20 28 0q-14-8-28 8q-14-16-28-8z" fill="#0e0b14"/>
+<path d="M330 40q10-14 20 0q10-14 20 0q-10-6-20 6q-10-12-20-6z" fill="#0e0b14"/>
+<path d="M0 395H800V440H0Z" fill="#1b1230"/>
+<path d="M435 395H505L570 440H370Z" fill="#3a2b5c"/>
+<path d="M30 395q-4-70 6-120M36 275q-22-30-34-34M36 300q22-34 40-36M33 330q-14-14-28-14" fill="none" stroke-width="6"/>
+<rect x="60" y="130" width="110" height="265" fill="#4a3677"/><rect x="60" y="130" width="110" height="265" fill="url(#hatch)" stroke="none"/>
+<polygon points="48,130 115,36 182,130" fill="#1b1230"/>
+<rect x="92" y="190" width="46" height="66" fill="#120d1c"/>
+<rect x="640" y="80" width="34" height="80" fill="#4a3677"/>
+<rect x="170" y="172" width="600" height="223" fill="#4a3677"/><rect x="170" y="172" width="600" height="223" fill="url(#hatch)" stroke="none"/>
+<polygon points="150,174 470,70 790,174" fill="#1b1230"/>
+<path d="M180 150l40-14M300 120l50-18" stroke="#3a2b5c" stroke-width="3" fill="none"/>
+<g id="wins"></g>
+</g>
+</svg>
+</div>
+
+<div class="bar"><div id="tabs" role="group" aria-label="Rooms" style="display:contents"></div><span class="prog" id="prog" aria-live="polite"></span></div>
+<p class="win-banner" id="banner" hidden></p>
+<div id="rooms"></div>
+</main>
+
+<script>
+const SEL=["Who","What","Where","When","Why"];
+const R={dec:/\.$/,int:/\?$/,imp:/[.!]$/,exc:/!$/,cond:/^if\b.+,.+/i,if:/\bif\b/i};
+const H={dec:"A statement ends with a period.",int:"A question ends with a question mark (?).",imp:"A command ends with a period or an exclamation mark.",exc:"An exclamation ends with an exclamation mark (!).",cond:"Start with “If”, add a comma, then give the result.",if:"A conditional sentence uses “if”."};
+const A=[
+{n:"Statements",t:"Spot the Statements!",k:"Declarative sentences",who:"Basti",say:"Careful! Only some of these just tell us something.",ins:"Is it a declarative sentence? Tap YES or NO.",type:"yn",items:[["The mansion has five rooms.",1],["Where is the missing key?",0],["The caretaker knows the secret.",1],["What a scary place!",0],["The portrait hangs beside the clock.",1]],bonus:"Write one declarative sentence about the mansion.",br:"dec"},
+{n:"Questions",t:"Ask the Right Question!",k:"Interrogative sentences",who:"Rain",say:"Who? What? Where? When? Why? Pick the one that fits.",ins:"Choose the question word that completes each question.",type:"sel",items:[["owns the mansion?","Who"],["is the missing key?","Where"],["happened inside the room?","What"],["did the strange events begin?","When"],["is the caretaker hiding?","Why"]],bonus:"Write one question you would ask the caretaker.",br:"int"},
+{n:"Commands",t:"Give the Command!",k:"Imperative sentences",who:"Kenny",say:"Keep it short and bossy. A command starts with an action word.",ins:"Write a command or instruction for each situation.",type:"w",rule:"imp",items:[["Your friend is scared. Tell them to stay calm.","Stay calm!"],["Your group needs to examine the symbols.","Examine the symbols carefully."],["Your friend is walking in the wrong direction.","Walk in the correct direction."],["You want someone to open the door.","Please open the door."],["You want everyone to stay together.","Stay together, everyone."]],bonus:"Write two safety instructions for exploring the mansion.",br:"imp",bn:2},
+{n:"Feelings",t:"Show Your Feelings!",k:"Exclamatory sentences",who:"Jazzy",say:"Put the feeling in your voice, then put it on the page!",ins:"Write an exclamatory sentence for each situation.",type:"w",rule:"exc",items:[["You suddenly see a ghost! (Fear)","What a frightening sight!"],["You find the missing pendant! (Excitement)","We finally found the missing pendant!"],["You discover that the ghost is actually a person! (Surprise)","I can’t believe the ghost is actually a person!"],["Your friend breaks an antique vase! (Disappointment)","Oh no! The antique vase is broken!"],["You finally solve the mystery! (Happiness)","We finally solved the mystery!"]],bonus:"Write an exclamatory sentence expressing your reaction to entering Mystery Manor.",br:"exc"},
+{n:"What-ifs",t:"Complete the Mystery!",k:"Conditional sentences",who:"Kenneth",say:"If this happens, then that happens. What comes next?",ins:"Complete each sentence with a possible result or condition.",type:"c",items:[["If the friends find the missing key,",".","they will open the locked door."],["If they solve the mystery,",".","they will discover the truth."],["If Kenny touches the wrong symbol,",".","he might activate a trap."],["The chest will open if",".","the friends arrange the clues correctly."],["If the friends work together,",".","they will solve the mystery."]],bonus:"Write one conditional sentence about what might happen if the friends fail to solve the mystery.",br:"if"},
+{n:"Secret Room",t:"Complete the Missing Dialogue!",k:"All five sentence types",who:"Basti",say:"We found it! A secret room!",ins:"The friends finally discover a secret room inside the mansion! Write what each friend says.",type:"d",items:[["Basti","Declarative","dec","The secret room contains an old treasure chest."],["Rain","Interrogative","int","What could be inside the chest?"],["Kenny","Imperative","imp","Open the chest carefully!"],["Jazzy","Exclamatory","exc","What an incredible discovery!"],["Kenneth","Conditional","cond","If we open the chest, we might discover the mansion’s final secret."]]}
+];
+const W=[[245,205],[425,205],[605,205],[245,300],[605,300]];
+const done=new Set();let cur=0;
+const $=s=>document.querySelector(s);
+
+$("#wins").innerHTML=A.map((a,i)=>{
+ const lab=`aria-label="Room ${i+1}: ${a.n}"`;
+ if(i<5){const[x,y]=W[i];return `<g class="win" data-i="${i}" tabindex="0" role="button" ${lab}><rect class="pane" x="${x}" y="${y}" width="90" height="75"/><path d="M${x+45} ${y}V${y+75}M${x} ${y+37}H${x+90}" stroke="#0e0b14" stroke-width="4"/><text x="${x+22}" y="${y+34}">${i+1}</text></g>`}
+ return `<g class="win" data-i="5" tabindex="0" role="button" ${lab}><path class="pane" d="M435 395V335q0-35 35-35t35 35V395Z"/><text x="470" y="360">6</text></g>`}).join("");
+
+$("#tabs").innerHTML=A.map((a,i)=>`<button type="button" class="tab" data-i="${i}">${i+1} ${a.n}</button>`).join("");
+
+$("#rooms").innerHTML=A.map((a,i)=>{
+ const li=a.items.map(it=>{
+  if(a.type=="yn")return `<li><span>${it[0]}</span><span class="yn"><button type="button" aria-pressed="false" data-v="1">YES</button><button type="button" aria-pressed="false" data-v="0">NO</button></span><em class="fb"></em></li>`;
+  if(a.type=="sel")return `<li><select aria-label="Question word"><option value="">?</option>${SEL.map(o=>`<option>${o}</option>`).join("")}</select> <span>${it[0]}</span><em class="fb"></em></li>`;
+  if(a.type=="w")return `<li><label>${it[0]}<br><input type="text" autocomplete="off"></label><em class="fb"></em></li>`;
+  if(a.type=="c")return `<li><label>${it[0]} <input type="text" autocomplete="off"> ${it[1]}</label><em class="fb"></em></li>`;
+  return `<li><label><b>${it[0]}</b> (${it[1]}): “<input type="text" autocomplete="off">”</label><em class="fb"></em></li>`}).join("");
+ const bonus=a.bonus?`<div class="bonus"><label><b>Bonus:</b> ${a.bonus}<textarea></textarea></label><div class="row"><button type="button" class="go bchk">Check bonus</button><span class="bres" aria-live="polite"></span></div></div>`:"";
+ return `<section class="panel box" id="r${i}" ${i?"hidden":""} aria-label="${a.t}"><p class="say"><b>${a.who}:</b> “${a.say}”</p><h2>${a.t}</h2><span class="chip">${a.k}</span><p>${a.ins}</p><ol>${li}</ol><div class="row"><button type="button" class="go chk">Check answers</button><span class="res" aria-live="polite"></span></div>${bonus}</section>`}).join("");
+
+function sentenceOk(v,rule){const w=v.trim().split(/\s+/).filter(Boolean);if(!w.length)return"Write an answer first.";if(rule&&!R[rule].test(v.trim()))return H[rule];if(w.length<2)return"Add a few more words.";return""}
+
+document.querySelectorAll(".panel").forEach((s,i)=>{
+ const a=A[i],lis=[...s.querySelectorAll("ol>li")];
+ s.querySelectorAll(".yn button").forEach(b=>b.onclick=()=>{b.parentNode.querySelectorAll("button").forEach(o=>o.setAttribute("aria-pressed",o===b))});
+ s.querySelector(".chk").onclick=()=>{
+  let good=0;
+  lis.forEach((li,j)=>{const it=a.items[j];let msg="",sample="";
+   if(a.type=="yn"){const on=li.querySelector("[aria-pressed=true]");msg=on?(+on.dataset.v===it[1]?"":"Not quite."):"Pick YES or NO."}
+   else if(a.type=="sel"){const v=li.querySelector("select").value;msg=v?(v===it[1]?"":"Not quite. Read the question again."):"Pick a question word."}
+   else{const v=li.querySelector("input").value;
+    if(a.type=="w"){msg=sentenceOk(v,a.rule);sample=it[1]}
+    else if(a.type=="c"){msg=sentenceOk(v,null);sample=it[0]+" "+it[2]+it[1]}
+    else{msg=sentenceOk(v,it[2]);sample=it[3]}}
+   const ok=!msg;if(ok)good++;li.className=ok?"ok":"bad";
+   li.querySelector(".fb").textContent=(ok?"✔ Nice one.":"✖ "+msg)+(sample?" Sample answer: "+sample:"")});
+  const r=s.querySelector(".res");
+  if(good===lis.length){r.textContent="Room lit! Well done.";done.add(i);upd()}else r.textContent=`${good} of ${lis.length} right. Fix the red ones and check again.`};
+ const bc=s.querySelector(".bchk");
+ if(bc)bc.onclick=()=>{
+  const v=s.querySelector("textarea").value.trim(),parts=v.split(/(?<=[.!?])\s+|\n+/).filter(Boolean),need=a.bn||1;let m="";
+  if(!v)m="Write something first.";else if(parts.length<need)m=`Write ${need} sentences.`;else{const bad=parts.find(p=>!R[a.br].test(p.trim()));m=bad?H[a.br]:""}
+  s.querySelector(".bres").textContent=m?"✖ "+m:"✔ Great sentence!"};
+});
+
+function go(i){cur=i;document.querySelectorAll(".panel").forEach((p,j)=>p.hidden=j!==i);upd();$("#r"+i).scrollIntoView({behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth",block:"nearest"})}
+function upd(){
+ document.querySelectorAll(".tab").forEach((t,i)=>{t.classList.toggle("done",done.has(i));t.setAttribute("aria-current",i===cur);t.textContent=`${i+1} ${A[i].n}${done.has(i)?" ✓":""}`});
+ document.querySelectorAll(".win").forEach(w=>{const i=+w.dataset.i;w.classList.toggle("lit",done.has(i));w.classList.toggle("cur",i===cur)});
+ $("#prog").textContent=`Rooms lit: ${done.size} of 6`;
+ const b=$("#banner");b.hidden=done.size<6;if(done.size===6)b.textContent="Case closed! Every room is lit and the mystery is solved!"}
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>go(+t.dataset.i));
+document.querySelectorAll(".win").forEach(w=>{w.onclick=()=>go(+w.dataset.i);w.onkeydown=e=>{if(e.key=="Enter"||e.key==" "){e.preventDefault();go(+w.dataset.i)}}});
+upd();
+</script>
+</body>
+</html>
